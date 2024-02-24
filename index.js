@@ -91,7 +91,7 @@ form.addEventListener("submit", async e=>{
         `;
     });
 });
-document.querySelector`button#save-images`.addEventListener('click', e=>{
+document.querySelector(`button#save-images`).addEventListener('click', e=>{
     images.map((el, idx)=>{
         let a = document.createElement('a');
         a.href = el;
@@ -102,4 +102,9 @@ document.querySelector`button#save-images`.addEventListener('click', e=>{
         a.click();
         a.remove();
     });
-})
+});
+
+window.addEventListener('paste', e=>{
+    if (Array.from(e.clipboardData.files).find(file=>file.type.startsWith("image/")))
+        imageInput.files = e.clipboardData.files;
+});
